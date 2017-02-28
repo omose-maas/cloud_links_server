@@ -5,5 +5,14 @@
 </head>
 <body>
     <h1>Flask-SocketIO Test</h1>
+    <form action="/post" method="post">
+        <input type="text" name="latitude" id="latitude" placeholder="latitude">
+        <input type="text" name="longitude" id="longitude" placeholder="longitude">
+        <button type='submit' name='action' value = 'post'>post</button>
+    </form>
+    <form action="/post" method="post">
+		<button type='submit' name='action' value = "count">Count</button>
+	</form>
+    <p>{{message}}</p>
 </body>
 </html>
