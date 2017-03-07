@@ -4,7 +4,7 @@
 #setup env
 #pip install flask-socketio pyjsonrpc
 
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, url_for
 from flask_socketio import SocketIO, send, emit, disconnect
 import json
 import pyjsonrpc
@@ -46,9 +46,9 @@ def print_response_message(response):
 			msg = "lat:" + str(lat) + "  " + "lon:" + str(lon)
 	elif "error" in parsed_response:
 		msg = parsed_response["error"]
-	return render_template('index.html', message = msg)
+
+	emit('redirect',{'url': url_for('hello')}, broadcast=True)
 
 
 if __name__ == '__main__':
 	socketio.run(app, port=5000)
-
