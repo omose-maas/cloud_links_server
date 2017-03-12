@@ -38,6 +38,10 @@ def hello():
 		if request.form['action'] == 'getpos':
 			request_json = pyjsonrpc.create_request_json("DriverlessCar.get_status")
 			send_socketio.send_data(socketio,request_json)
+		## load keyvalue of fixed destination
+		if request.form['action'] == 'loadpos':
+			request_json = pyjsonrpc.create_request_json("DriverlessCar.load_fixed_destination")
+			send_socketio.send_data(socketio,request_json)
 	return render_template('index.html', message = msg)
 
 
