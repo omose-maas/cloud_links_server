@@ -24,10 +24,17 @@ def index():
 def hello():
 	global msg
 	if request.method == 'POST':
+		## set destination with lat and long
 		if request.form['action'] == 'post':
 			data = {'latitude' : request.form['latitude'], 'longitude' : request.form['longitude']}
 			request_json = pyjsonrpc.create_request_json("DriverlessCar.set_destination",data)
 			send_socketio.send_data(socketio,request_json)
+		## set fixed destination with key value
+		if request.form['action'] == 'setfixed':
+			data = { 'location_name' : request.form['fixedkey']}
+			request_json = pyjsonrpc.create_request_json("DriverlessCar.set_fixed_destination",data)
+			send_socketio.send_data(socketio,request_json)
+		## get current status of driverlesscar
 		if request.form['action'] == 'getpos':
 			request_json = pyjsonrpc.create_request_json("DriverlessCar.get_status")
 			send_socketio.send_data(socketio,request_json)
